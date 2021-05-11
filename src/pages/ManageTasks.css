@@ -1,0 +1,9 @@
+.manage-tasks{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.manage-tasks-child{
+    padding:10px;
+}

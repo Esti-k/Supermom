@@ -1,0 +1,11 @@
+Navbar, Nav{
+    background-color: pink;
+    color: purple;
+    font-weight: bold;
+    
+}
+
+Nav{
+    display: flex;
+    justify-content: space-between;
+}
