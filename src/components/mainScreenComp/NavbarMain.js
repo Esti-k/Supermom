@@ -16,6 +16,7 @@ class NavbarMain extends React.Component{
               <Navbar>
                 {/*  bg="dark" variant="dark" */}
                 <Nav className="mr-auto">
+                <Nav.Link href="/#">Home</Nav.Link>
                   <Nav.Link href="#manageTasks">Manage Tasks</Nav.Link>
                   <Nav.Link href="#manageSubjects">Manage Subjects</Nav.Link>
                   <Nav.Link href="#managePeople">Manage People</Nav.Link>

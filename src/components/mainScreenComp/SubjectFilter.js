@@ -9,17 +9,24 @@ class SubjectFilter extends React.Component{
         }
     }
 
+    setFilter = (event) => {
+        this.props.setFilter({'subject': event.target.value })
+    }
     render(){
+
+        const mySubjects = this.props.subjects.map((sub)=>{return (<option>{sub.subject}</option>)});
+
         return(
 
                     // <Form>
                         <Form.Group controlId="exampleForm.SelectCustom">
                             <Form.Label>Choose Subject</Form.Label>
-                            <Form.Control as="select" custom>
-                            <option>Sub1</option>
+                            <Form.Control as="select" custom onChange={this.setFilter}>
+                                {mySubjects}
+                            {/* <option>Sub1</option>
                             <option>Sub2</option>
                             <option>Sub3</option>
-                            <option>Sub4</option>
+                            <option>Sub4</option> */}
                             </Form.Control>
                         </Form.Group>
                     // </Form>

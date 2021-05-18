@@ -20,6 +20,13 @@ class EmptyTask extends React.Component{
     handleClose = () =>{
         this.setState({
             isModalOpen: false,
+            title: '',
+            desc: '',
+            date: '',
+            time:'',
+            assignedTo:'',
+            subject:''
+           
         })
     }
 
@@ -37,11 +44,20 @@ class EmptyTask extends React.Component{
         }
         console.log(newTask.title + 'in EmptyTask');
         this.props.addTask(newTask); 
+        this.handleClose();
 
     }
 
 
     render(){
+        const subjectsToChooseFrom = this.props.subjects.map((sub) => {
+            return (<option>{sub.subject}</option>)
+        })
+
+        const peopleToChooseFrom = this.props.people.map((person) => {
+            return (<option>{person.name}</option>)
+        })
+
         return(
           <Container>
                 <Button onClick={()=>{this.setState({isModalOpen:true})}}>Add a Task</Button>
@@ -66,6 +82,31 @@ class EmptyTask extends React.Component{
                             />
                     </Col>
 
+
+                    <Form.Label column sm={2}>
+                    Subject:
+                    </Form.Label>
+                    <Col sm={10}>
+                        <Form.Control as="select" custom
+                            value={this.state.subject}
+                            onChange={(event)=> {this.setState({subject: event.target.value})}}
+                        >
+                                {subjectsToChooseFrom}
+                        </Form.Control>
+                        {/* <Form.Control type="text" placeholder="Task Subject"
+                        value={this.state.subject}
+                        onChange={(event)=> {this.setState({subject: event.target.value})}}
+                        /> */}
+                    </Col>
+
+                    {/* //instead of type text above, change to a select, to select from the existing subjects. use map 
+                    <Form.Control as="select" custom>
+                            <option>Mom</option>
+                            <option>Dad</option>
+                            <option>Adi</option>
+                            <option>Yair</option>
+                            </Form.Control> */}
+{/* 
                     <Form.Label column sm={2}>
                     Subject:
                     </Form.Label>
@@ -74,7 +115,7 @@ class EmptyTask extends React.Component{
                         value={this.state.subject}
                         onChange={(event)=> {this.setState({subject: event.target.value})}}
                         />
-                    </Col>
+                    </Col> */}
 
                     <Form.Label column sm={2}>
                     Description:
@@ -90,7 +131,7 @@ class EmptyTask extends React.Component{
                     Date:
                     </Form.Label>
                     <Col sm={10}>
-                        <Form.Control type="text" placeholder="Task Description"
+                        <Form.Control type="date" placeholder="Task Description"
                         value={this.state.date}
                         onChange={(event)=> {this.setState({date: event.target.value})}}
                         />
@@ -100,7 +141,7 @@ class EmptyTask extends React.Component{
                     Time:
                     </Form.Label>
                     <Col sm={10}>
-                        <Form.Control type="text" placeholder="Task Time"
+                        <Form.Control type="time" placeholder="Task Time"
                         value={this.state.time}
                         onChange={(event)=> {this.setState({time: event.target.value})}}
                         />
@@ -110,10 +151,18 @@ class EmptyTask extends React.Component{
                     Assign to:
                     </Form.Label>
                     <Col sm={10}>
-                        <Form.Control type="text" placeholder="Assign to"
+                        {/* <Form.Control type="text" placeholder="Assign to"
                         value={this.state.assignTo}
                         onChange={(event)=> {this.setState({assignTo: event.target.value})}}
-                        />
+                        /> */}
+
+                        <Form.Control as="select" custom
+                            value={this.state.assignTo}
+                            onChange={(event)=> {this.setState({assignedTo: event.target.value})}}
+                        >
+                                {peopleToChooseFrom}
+                        </Form.Control>
+
                     </Col>
                    
                     
