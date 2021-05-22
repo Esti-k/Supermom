@@ -6,16 +6,65 @@ import WeekPlan from '../components/mainScreenComp/WeekPlan';
 import ManageTasksMom from './ManageTasksMom';
 import PersonFilter from '../components/mainScreenComp/PersonFilter';
 import SubjectFilter from '../components/mainScreenComp/SubjectFilter';
+import FullTask from '../components/mainScreenComp/FullTask';
 
 class SupermomMain extends React.Component{
     constructor(props){
         super(props);
         
-        this.state = {
-            // tasksToDo : [],
-            // tasksDone : []
-        }
+        // this.state = {
+        //     updateTaskOpen : false,
+        //     taskTitle:'',
+        //     desc:'',
+        //     date:'',
+        //     time:'',
+        //     assignedTo:'',
+        //     subject:'',
+        //     taskObj:{}
+        // }
     }
+
+    // openTaskUpdate2 = (myTitle) => {
+        
+    //     // this.setState({
+    //     //     updateTaskOpen:true,
+    //     //     taskTitle:myTitle
+    //     // })
+
+    //     const currentTask = this.props.tasksToDo.filter((task) => {
+    //         if(myTitle == task.title)
+    //             return true;
+    //     }
+    //     )
+
+    //     this.setState({
+    //         updateTaskOpen : true,
+    //         taskTitle: currentTask[0].title,
+    //         desc: currentTask.description,
+    //         date: currentTask.date,
+    //         time:currentTask.time,
+    //         assignedTo:currentTask.assignedTo,
+    //         subject:currentTask.subject,
+
+    //         taskObj: {title: currentTask.title,
+    //             desc: currentTask.description,
+    //             date: currentTask.date,
+    //             time:currentTask.time,
+    //             assignedTo:currentTask.assignedTo,
+    //             subject:currentTask.subject}
+    //     })
+
+    // }
+
+    showTasks = (filter) => {
+        this.props.showTasks(filter);
+    }
+
+    // setModalCloseInParent = () =>{
+    //     this.setState({
+    //         updateTaskOpen : false
+    //     })
+    // }
 
     setFilter = (filter) => {
         this.props.setFilter(filter);
@@ -37,10 +86,7 @@ class SupermomMain extends React.Component{
                 <PersonFilter setFilter = {this.setFilter} people = {this.props.people}></PersonFilter>
                 <SubjectFilter subjects = {this.props.subjects} setFilter = {this.setFilter}></SubjectFilter>
                 <WeekPlan></WeekPlan>
-                {/* <ManageTasksMom addTask = {this.addTask}></ManageTasksMom> */}
-                {/* {console.log(this.state.tasksToDo + " In Render")} */}
-                {/* {console.log(this.state.tasksToDo[0].title + " In Render")} */}
-                {/* {this.props.tasksToShow} */}
+                
             </div>
         )
     }

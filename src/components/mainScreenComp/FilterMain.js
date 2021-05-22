@@ -38,9 +38,15 @@ class FilterMain extends React.Component{
         this.props.setFilter(filter)
     }
 
-    openTaskUpdate(){
-        this.props.openTaskUpdate();
+    openTaskUpdate = (title) => {
+       // this.props.setCurrentTaskTitle(title);
+        this.props.openTaskUpdate(title);
     }
+
+    openTaskUpdate2 =(title) => {
+        // this.props.setCurrentTaskTitle(title);
+         this.props.openTaskUpdate2(title);
+     }
 
     render(){
         const filTasks = this.findTasks();
@@ -51,7 +57,7 @@ class FilterMain extends React.Component{
             return(
             <Col lg={3} md={6} sm={12}>
                     <Card className = 'tasks-cards'>
-                        <Button onClick={()=>{this.openTaskUpdate()}}>{task.title}</Button>
+                        <Button onClick={()=>{this.openTaskUpdate2(task.title)}}>{task.title}</Button>
                         {/* <Button onClick={()=>{this.setState({isModalOpen:true})}}>{task.title}</Button> */}
                         {/* <h1>{task.title}</h1> */}
                         <p>{task.desc}</p>
@@ -72,6 +78,7 @@ class FilterMain extends React.Component{
                 <div class='filtered-cards'>
                     {tasksCards}
                 </div>
+               
                 
        
 

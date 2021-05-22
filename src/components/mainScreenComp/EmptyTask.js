@@ -42,7 +42,7 @@ class EmptyTask extends React.Component{
             assignedTo: this.state.assignedTo
             
         }
-        console.log(newTask.title + 'in EmptyTask');
+        console.log(newTask);
         this.props.addTask(newTask); 
         this.handleClose();
 
@@ -131,7 +131,7 @@ class EmptyTask extends React.Component{
                     Date:
                     </Form.Label>
                     <Col sm={10}>
-                        <Form.Control type="date" placeholder="Task Description"
+                        <Form.Control type="date"
                         value={this.state.date}
                         onChange={(event)=> {this.setState({date: event.target.value})}}
                         />

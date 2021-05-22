@@ -64,48 +64,79 @@ class FullTask extends React.Component{
     }
 
     // componentDidMount(){
+    //     const currentTask = this.props.tasksToDo.filter((task) => {
+    //         if(this.props.tasksToDo.title == task.title)
+    //             return true;
+    //     }
+    //     )
     //     this.setState({
-
+    //         title: currentTask.title,
+    //         desc: currentTask.description,
+    //         date: currentTask.date,
+    //         time:currentTask.time,
+    //         assignedTo:currentTask.assignedTo,
+    //         subject:currentTask.subject,
+    //         // done: currentTask.done
     //     })
     // }
 
+//     shouldComponentUpdate(){
+//         const currentTask = this.props.tasksToDo.filter((task) => {
+//             if(this.props.tasksToDo.title == task.title)
+//                 return true;
+//         }
+//         )
+//         if(this.props.isModalOpen == true && this.state.title != ''){
+//             this.setFirstValues(currentTask);
+//     }
+//     return true;
+// }
+
     render(){
-        // const subjectsToChooseFrom = this.props.subjects.map((sub) => {
-        //     return (<option>{sub.subject}</option>)
-        // })
+        const subjectsToChooseFrom = this.props.subjects.map((sub) => {
+            return (<option value={sub.subject}>{sub.subject}</option>)
+        })
 
-        // const peopleToChooseFrom = this.props.people.map((person) => {
-        //     return (<option>{person.name}</option>)
-        // })
+        const peopleToChooseFrom = this.props.people.map((person) => {
+            return (<option value={person.name}>{person.name}</option>)
+        })
 
-        // const currentTask = this.props.tasksToDo.filter((task) => {
-        //     if(this.props.tasks.title == task.title)
-        //         return true;
-        // }
-        // )
-        // this.setFirstValues(currentTask);
+        const currentTask = this.props.tasksToDo.find((task) => {
+            if(this.props.title == task.title)
+                return true;
+        }
+        )
+        console.log(currentTask);
+        if( currentTask && this.props.isModalOpen == true && this.state.title == '' ){
+            // console.log(currentTask);
+            this.setFirstValues(currentTask);
+        }
+       //  this.setFirstValues(currentTask);
+
         // this.setState({
-        //     isModalOpen : this.props.isModalOpen
+        //     //isModalOpen : this.props.isModalOpen,
+
         // })
         return(
           <Container>
                 {/* <Button onClick={()=>{this.setState({isModalOpen:true})}}>Add a Task</Button> */}
           
-                <Modal show={this.state.isModalOpen} onHide={this.handleClose}>
+                <Modal show={this.props.isModalOpen} onHide={this.handleClose}>
                 <Modal.Header closeButton>
                 <Modal.Title>Update Task</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
         
 
-                {/* <Form.Group as={Row} >
+                <Form.Group as={Row} >
                     <Form.Label column sm={2}>
                     Title:
                     </Form.Label>
                     <Col sm={10}>
                         <Form.Control 
                         type="text" 
-                        placeholder={currentTask.title}
+                        placeholder={this.props.title}
+                        // placeholder={this.props.taskObj.title}
                             value={this.state.title}
                             onChange={(event)=> {this.setState({title: event.target.value})}}
                             />
@@ -161,7 +192,7 @@ class FullTask extends React.Component{
                     <Col sm={10}>
 
                         <Form.Control as="select" custom
-                            value={this.state.assignTo}
+                            value={this.state.assignedTo}
                             onChange={(event)=> {this.setState({assignedTo: event.target.value})}}
                         >
                                 {peopleToChooseFrom}
@@ -171,7 +202,7 @@ class FullTask extends React.Component{
                    
                     
                     
-                </Form.Group> */}
+                </Form.Group>
 
                 </Modal.Body>
                 <Modal.Footer>

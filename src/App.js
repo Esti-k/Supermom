@@ -11,6 +11,9 @@ import NavbarMain from './components/mainScreenComp/NavbarMain';
 import { HashRouter, Route} from 'react-router-dom';
 import {Col, Card} from 'react-bootstrap';
 import React from 'react';
+import MyCalendar from './components/mainScreenComp/MyCalendar';
+import Basic from './components/mainScreenComp/MyCalendar';
+import moment from "moment";
 
 class App extends React.Component {
 
@@ -27,7 +30,8 @@ class App extends React.Component {
             subjects : [{subject:'Choose a Subject'},{subject:'Fun'},{subject:'Studies'}],
             people: [{name:'Choose a Person'},{name: 'Mom'}, {name: 'Dad'}, {name: 'Adi'}],
             //  filter:{name: '', subject:'', date: ''}
-            filter:{name:'', subject:'', date:''}
+            filter:{name:'', subject:'', date:''},
+            events:[]
         }
     }
 
@@ -82,19 +86,45 @@ class App extends React.Component {
       // this.state.filter.subject = filter.subject;
     }
 
+    
     updateTask = (task) => {
       // Update the task
-     
+     console.log('updateTask');
+    const taskIndex = this.state.tasksToDo.findIndex((taskToDo) => {
+                                                      if (task.title == taskToDo.title){
+                                                        return true;
+                                                      }});
+    let helper = [...this.state.tasksToDo];
+    helper[taskIndex] = task;
+    this.setState({
+      tasksToDo : helper
+    })
+
+
+  //    const currentTask = this.props.tasksToDo.find((task) => {
+  //     if(this.props.title == task.title)
+  //         return true;
+  // }
+  // )
   }
 
     addTask = (task) =>{
+      console.log('in addtask in app.js')
       let helper = this.state.tasksToDo.concat(task);
       this.setState(
           {
               tasksToDo: helper 
           }      
       )
-    }
+
+        const defineDates = this.state.tasksToDo.map((task) => {return({date: task.date,time:task.time, start: moment(task.date.concat('-').concat(task.time),"YYYY-MM-DD-hh:mm").toDate(), assignedTo : task.assignedTo, desc: task.desc, subject:task.subject, title:task.title})})
+        // const myEvents = defineDates.map((task,index)=>{return({start: task.start, end:new Date(task.start.addHours(task.start.getHours()+1)), title:'new title', id:index})})
+         const myEvents = defineDates.map((task,index)=>{return({start: task.start, end:moment(task.date.concat('-').concat((parseInt((task.time).substring(0,2))+1).toString()),"YYYY-MM-DD-hh:mm").toDate(), title:task.title, id:index, assignedTo : task.assignedTo})})
+        this.setState({
+          events: myEvents
+        })
+      }
+   
 
     addSubject = (sub) =>{
       let helper = this.state.subjects.concat(sub);
@@ -135,10 +165,39 @@ class App extends React.Component {
 
           <NavbarMain></NavbarMain>
           <Route exact path="/">
-            <SupermomMain setFilter = {this.setFilter} tasksToDo = {this.state.tasksToDo} filter = {this.state.filter} tasksToShow = {this.state.tasksToShow} showTasks = {this.showTasks} people = {this.state.people} subjects = {this.state.subjects}></SupermomMain>
+            <SupermomMain updateTask = {this.updateTask} setFilter = {this.setFilter} tasksToDo = {this.state.tasksToDo} filter = {this.state.filter} tasksToShow = {this.state.tasksToShow} showTasks = {this.showTasks} people = {this.state.people} subjects = {this.state.subjects}></SupermomMain>
+            <MyCalendar tasksToDo = {this.state.tasksToDo} 
+                        people={this.state.people} 
+                        subjects = {this.state.subjects}
+                        events={this.state.events}
+                        eventPropGetter={
+                          (event, start, end, isSelected) => {
+                            let newStyle = {
+                              backgroundColor: "lightgrey",
+                              color: 'black',
+                              borderRadius: "0px",
+                              border: "none"
+                            };
+                      
+                            if (event.assignedTo == 'Mom'){
+                              newStyle.backgroundColor = "lightpink"
+                            }
+                           else if (event.assignedTo == 'Dad'){
+                              newStyle.backgroundColor = "lightblue"
+                            }
+                            if (event.assignedTo == 'Adi'){
+                              newStyle.backgroundColor = "lightgreen"
+                            }
+                      
+                            return {
+                              className: "",
+                              style: newStyle
+                            };
+                          }
+                        }></MyCalendar>
           </Route>
           <Route exact path="/manageTasks">
-            <ManageTasksMom setFilter = {this.setFilter} tasksToDo = {this.state.tasksToDo} filter = {this.state.filter} tasksToShow = {this.state.tasksToShow} showTasks = {this.showTasks} addTask = {this.addTask} people={this.state.people} subjects = {this.state.subjects}></ManageTasksMom>
+            <ManageTasksMom updateTask = {this.updateTask} setFilter = {this.setFilter} tasksToDo = {this.state.tasksToDo} filter = {this.state.filter} tasksToShow = {this.state.tasksToShow} showTasks = {this.showTasks} addTask = {this.addTask} people={this.state.people} subjects = {this.state.subjects}></ManageTasksMom>
           </Route>
           <Route exact path="/manageSubjects">
             <ManageSubjects filter = {this.state.filter} addSubject = {this.addSubject} subjects = {this.state.subjects}></ManageSubjects>
@@ -149,7 +208,7 @@ class App extends React.Component {
         </HashRouter>
       )
     }
-      }
+}    
 
   
 export default App;
