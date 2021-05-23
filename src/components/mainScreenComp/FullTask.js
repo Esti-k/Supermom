@@ -54,7 +54,7 @@ class FullTask extends React.Component{
     setFirstValues(currentTask){
         this.setState({
         title: currentTask.title,
-        desc: currentTask.description,
+        desc: currentTask.desc,
         date: currentTask.date,
         time:currentTask.time,
         assignedTo:currentTask.assignedTo,

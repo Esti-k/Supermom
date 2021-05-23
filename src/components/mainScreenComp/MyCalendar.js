@@ -302,25 +302,33 @@ class MyCalendar extends Component {
   //   this.mapTasksToEvents();
   // }
 
+  filterEvents =(events, filter) =>{
+      if (filter.name == 'Choose a Person' || filter.name == undefined )
+        return events;
+      else {
+        return events.filter((event)=>{if (event.assignedTo == filter.name) return true})
+      }
+  }
 
   render() {
-    // this.mapTasksToEvents();
+    const myEvents = this.filterEvents(this.props.events, this.props.filter);
     return (
       <div className="App">
         <DnDCalendar
           defaultDate={moment().toDate()}
           defaultView="week"
-          events={this.props.events}
+          events={myEvents}
+          //events={this.props.events}
           localizer={localizer}
           onEventDrop={this.onEventDrop}
           onEventResize={this.onEventResize}
           resizable
-          style={{ height: "50vh" }}
+          style={{ height: "80vh" }}
           onSelectEvent = {this.eventClicked}
           eventPropGetter={(this.props.eventPropGetter)}
         />
         <div>
-              <FullTask taskObj={this.state.taskObj} title={this.state.taskTitle} subject={this.state.subject} desc={this.state.desc} taskObj = {this.state.taskObj} taskTitle={this.state.taskTitle} setModalCloseInParent = {this.setModalCloseInParent} isModalOpen = {this.state.updateTaskOpen} updateTask = {this.updateTask} people = {this.props.people} subjects = {this.props.subjects} tasksToDo = {this.props.tasksToDo}></FullTask>
+              <FullTask taskObj={this.state.taskObj} title={this.state.taskTitle} subject={this.state.subject} desc={this.state.desc} taskObj = {this.state.taskObj} taskTitle={this.state.taskTitle} setModalCloseInParent = {this.setModalCloseInParent} isModalOpen = {this.state.updateTaskOpen} updateTask = {this.props.updateTask} people = {this.props.people} subjects = {this.props.subjects} tasksToDo = {this.props.tasksToDo}></FullTask>
         </div>
         
       </div>

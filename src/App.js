@@ -31,7 +31,8 @@ class App extends React.Component {
             people: [{name:'Choose a Person'},{name: 'Mom'}, {name: 'Dad'}, {name: 'Adi'}],
             //  filter:{name: '', subject:'', date: ''}
             filter:{name:'', subject:'', date:''},
-            events:[]
+            events:[],
+            mainFilter:{person:'', subject:''}
         }
     }
 
@@ -60,6 +61,14 @@ class App extends React.Component {
     // )
     // return tasksCards;
     
+    setMainFilter = (myFilter) => {
+      this.setState(
+        {
+            mainFilter: myFilter
+        }      
+      )
+    }
+
     setFilter = (myFilter) => {
 
       // if (myFilter.hasOwnProperty('name')){
@@ -165,8 +174,10 @@ class App extends React.Component {
 
           <NavbarMain></NavbarMain>
           <Route exact path="/">
-            <SupermomMain updateTask = {this.updateTask} setFilter = {this.setFilter} tasksToDo = {this.state.tasksToDo} filter = {this.state.filter} tasksToShow = {this.state.tasksToShow} showTasks = {this.showTasks} people = {this.state.people} subjects = {this.state.subjects}></SupermomMain>
-            <MyCalendar tasksToDo = {this.state.tasksToDo} 
+            <SupermomMain filter = {this.state.filter} updateTask = {this.updateTask} setFilter = {this.setFilter} tasksToDo = {this.state.tasksToDo} filter = {this.state.filter} tasksToShow = {this.state.tasksToShow} showTasks = {this.showTasks} people = {this.state.people} subjects = {this.state.subjects}></SupermomMain>
+            <MyCalendar filter = {this.state.filter}
+                        updateTask = {this.updateTask}
+                        tasksToDo = {this.state.tasksToDo} 
                         people={this.state.people} 
                         subjects = {this.state.subjects}
                         events={this.state.events}

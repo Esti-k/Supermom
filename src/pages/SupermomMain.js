@@ -70,6 +70,10 @@ class SupermomMain extends React.Component{
         this.props.setFilter(filter);
     }
 
+    setMainFilter = (filter) => {
+        this.props.setMainFilter(filter);
+    }
+
     // addTask = (task) =>{
     //     let helper = this.state.tasksToDo.concat(task);
     //     this.setState(
@@ -84,7 +88,7 @@ class SupermomMain extends React.Component{
                 {/* <NavbarMain></NavbarMain> */}
                 {/* <FilterMain tasksToDo = {this.props.tasksToDo} setFilter = {this.setFilter} filter = {this.props.filter} tasksToShow = {this.props.tasksToShow} showTasks = {this.props.showTasks} people = {this.props.people} subjects = {this.props.subjects}></FilterMain> */}
                 <PersonFilter setFilter = {this.setFilter} people = {this.props.people}></PersonFilter>
-                <SubjectFilter subjects = {this.props.subjects} setFilter = {this.setFilter}></SubjectFilter>
+                {/* <SubjectFilter subjects = {this.props.subjects} setFilter = {this.setFilter}></SubjectFilter> */}
                 <WeekPlan></WeekPlan>
                 
             </div>
