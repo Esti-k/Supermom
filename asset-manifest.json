@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/Supermom/static/css/main.4c9a0787.chunk.css",
+    "main.js": "/Supermom/static/js/main.c6c2da94.chunk.js",
+    "main.js.map": "/Supermom/static/js/main.c6c2da94.chunk.js.map",
+    "runtime-main.js": "/Supermom/static/js/runtime-main.72401371.js",
+    "runtime-main.js.map": "/Supermom/static/js/runtime-main.72401371.js.map",
+    "static/css/2.69b71823.chunk.css": "/Supermom/static/css/2.69b71823.chunk.css",
+    "static/js/2.129693e3.chunk.js": "/Supermom/static/js/2.129693e3.chunk.js",
+    "static/js/2.129693e3.chunk.js.map": "/Supermom/static/js/2.129693e3.chunk.js.map",
+    "static/js/3.68f213c2.chunk.js": "/Supermom/static/js/3.68f213c2.chunk.js",
+    "static/js/3.68f213c2.chunk.js.map": "/Supermom/static/js/3.68f213c2.chunk.js.map",
+    "index.html": "/Supermom/index.html",
+    "static/css/2.69b71823.chunk.css.map": "/Supermom/static/css/2.69b71823.chunk.css.map",
+    "static/css/main.4c9a0787.chunk.css.map": "/Supermom/static/css/main.4c9a0787.chunk.css.map",
+    "static/js/2.129693e3.chunk.js.LICENSE.txt": "/Supermom/static/js/2.129693e3.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.72401371.js",
+    "static/css/2.69b71823.chunk.css",
+    "static/js/2.129693e3.chunk.js",
+    "static/css/main.4c9a0787.chunk.css",
+    "static/js/main.c6c2da94.chunk.js"
+  ]
+}
