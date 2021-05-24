@@ -1,20 +1,25 @@
 import React from "react";
 import { Image } from "react-bootstrap";
-import dad from '../../src/dad'
+import dad from './dad.png'
+
 class Login2 extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            Mom = '',
-            Dad = '../../src/dad',
-            Adi = ''
+            Mom : '',
+            Dad : '',
+            Adi : ''
 
         }
     }
     render(){
+        return(
         <div>
-            <Image src={this.state.Dad}></Image>
+            <img src={dad}></img>
         </div>
-    }
+        )    
+}
 
 }
+
+export default Login2;

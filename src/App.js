@@ -14,6 +14,7 @@ import React from 'react';
 import MyCalendar from './components/mainScreenComp/MyCalendar';
 import Basic from './components/mainScreenComp/MyCalendar';
 import moment from "moment";
+import Login2 from './pages/Login2';
 
 class App extends React.Component {
 
@@ -185,54 +186,54 @@ class App extends React.Component {
 
       render(){
         return (
-          
-        <HashRouter>
+          <Login2></Login2>
+        // <HashRouter>
 
-          <NavbarMain></NavbarMain>
-          <Route exact path="/">
-            <SupermomMain filter = {this.state.filter} updateTask = {this.updateTask} setFilter = {this.setFilter} tasksToDo = {this.state.tasksToDo} filter = {this.state.filter} tasksToShow = {this.state.tasksToShow} showTasks = {this.showTasks} people = {this.state.people} subjects = {this.state.subjects}></SupermomMain>
-            <MyCalendar filter = {this.state.filter}
-                        updateTask = {this.updateTask}
-                        tasksToDo = {this.state.tasksToDo} 
-                        people={this.state.people} 
-                        subjects = {this.state.subjects}
-                        events={this.state.events}
-                        eventPropGetter={
-                          (event, start, end, isSelected) => {
-                            let newStyle = {
-                              backgroundColor: "lightgrey",
-                              color: 'black',
-                              borderRadius: "0px",
-                              border: "none"
-                            };
+        //   <NavbarMain></NavbarMain>
+        //   <Route exact path="/">
+        //     <SupermomMain filter = {this.state.filter} updateTask = {this.updateTask} setFilter = {this.setFilter} tasksToDo = {this.state.tasksToDo} filter = {this.state.filter} tasksToShow = {this.state.tasksToShow} showTasks = {this.showTasks} people = {this.state.people} subjects = {this.state.subjects}></SupermomMain>
+        //     <MyCalendar filter = {this.state.filter}
+        //                 updateTask = {this.updateTask}
+        //                 tasksToDo = {this.state.tasksToDo} 
+        //                 people={this.state.people} 
+        //                 subjects = {this.state.subjects}
+        //                 events={this.state.events}
+        //                 eventPropGetter={
+        //                   (event, start, end, isSelected) => {
+        //                     let newStyle = {
+        //                       backgroundColor: "lightgrey",
+        //                       color: 'black',
+        //                       borderRadius: "0px",
+        //                       border: "none"
+        //                     };
                       
-                            if (event.assignedTo == 'Mom'){
-                              newStyle.backgroundColor = "lightpink"
-                            }
-                           else if (event.assignedTo == 'Dad'){
-                              newStyle.backgroundColor = "lightblue"
-                            }
-                            if (event.assignedTo == 'Adi'){
-                              newStyle.backgroundColor = "lightgreen"
-                            }
+        //                     if (event.assignedTo == 'Mom'){
+        //                       newStyle.backgroundColor = "lightpink"
+        //                     }
+        //                    else if (event.assignedTo == 'Dad'){
+        //                       newStyle.backgroundColor = "lightblue"
+        //                     }
+        //                     if (event.assignedTo == 'Adi'){
+        //                       newStyle.backgroundColor = "lightgreen"
+        //                     }
                       
-                            return {
-                              className: "",
-                              style: newStyle
-                            };
-                          }
-                        }></MyCalendar>
-          </Route>
-          <Route exact path="/manageTasks">
-            <ManageTasksMom updateTask = {this.updateTask} setFilter = {this.setFilter} tasksToDo = {this.state.tasksToDo} filter = {this.state.filter} tasksToShow = {this.state.tasksToShow} showTasks = {this.showTasks} addTask = {this.addTask} people={this.state.people} subjects = {this.state.subjects}></ManageTasksMom>
-          </Route>
-          <Route exact path="/manageSubjects">
-            <ManageSubjects filter = {this.state.filter} addSubject = {this.addSubject} subjects = {this.state.subjects}></ManageSubjects>
-          </Route>
-          <Route exact path="/managePeople">
-            <ManagePeople filter = {this.state.filter} addPeople = {this.addPeople} people = {this.state.people} subjects= {this.state.subjects}></ManagePeople>
-          </Route>
-        </HashRouter>
+        //                     return {
+        //                       className: "",
+        //                       style: newStyle
+        //                     };
+        //                   }
+        //                 }></MyCalendar>
+        //   </Route>
+        //   <Route exact path="/manageTasks">
+        //     <ManageTasksMom updateTask = {this.updateTask} setFilter = {this.setFilter} tasksToDo = {this.state.tasksToDo} filter = {this.state.filter} tasksToShow = {this.state.tasksToShow} showTasks = {this.showTasks} addTask = {this.addTask} people={this.state.people} subjects = {this.state.subjects}></ManageTasksMom>
+        //   </Route>
+        //   <Route exact path="/manageSubjects">
+        //     <ManageSubjects filter = {this.state.filter} addSubject = {this.addSubject} subjects = {this.state.subjects}></ManageSubjects>
+        //   </Route>
+        //   <Route exact path="/managePeople">
+        //     <ManagePeople filter = {this.state.filter} addPeople = {this.addPeople} people = {this.state.people} subjects= {this.state.subjects}></ManagePeople>
+        //   </Route>
+        // </HashRouter>
       )
     }
 }    
