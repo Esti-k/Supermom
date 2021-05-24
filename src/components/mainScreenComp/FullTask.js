@@ -23,13 +23,22 @@ class FullTask extends React.Component{
             time:'',
             assignedTo:'',
             subject:'',
-            done: false
+            done: false,
+            imNew: false
         }
     }
 
         handleClose = () =>{
         this.setState({
             isModalOpen: false,
+            title: '',
+            desc: '',
+            date: '',
+            time:'',
+            assignedTo:'',
+            subject:'',
+            done: false,
+            imNew: false
         })
         this.props.setModalCloseInParent();
     }
@@ -43,11 +52,13 @@ class FullTask extends React.Component{
             desc: this.state.desc,
             date: this.state.date,
             time: this.state.time,
+            endTime:this.state.endTime,
             assignedTo: this.state.assignedTo,
             // done: this.state.done
         }
         // console.log(newTask.title + 'in EmptyTask');
         this.props.updateTask(updatedTask); 
+       
         this.handleClose();
     }
 
@@ -57,6 +68,7 @@ class FullTask extends React.Component{
         desc: currentTask.desc,
         date: currentTask.date,
         time:currentTask.time,
+        endTime:currentTask.endTime,
         assignedTo:currentTask.assignedTo,
         subject:currentTask.subject,
         // done: currentTask.done
@@ -110,6 +122,7 @@ class FullTask extends React.Component{
         if( currentTask && this.props.isModalOpen == true && this.state.title == '' ){
             // console.log(currentTask);
             this.setFirstValues(currentTask);
+            //this.state.imNew = false;
         }
        //  this.setFirstValues(currentTask);
 
@@ -183,6 +196,16 @@ class FullTask extends React.Component{
                         <Form.Control type="time" placeholder="Task Time"
                         value={this.state.time}
                         onChange={(event)=> {this.setState({time: event.target.value})}}
+                        />
+                    </Col>
+
+                    <Form.Label column sm={2}>
+                    End Time:
+                    </Form.Label>
+                    <Col sm={10}>
+                        <Form.Control type="time" placeholder="Task Time"
+                        value={this.state.endTime}
+                        onChange={(event)=> {this.setState({endTime: event.target.value})}}
                         />
                     </Col>
 

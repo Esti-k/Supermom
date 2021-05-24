@@ -1,6 +1,6 @@
-Navbar, Nav{
-    background-color: pink;
-    color: purple;
+Navbar, Nav, Nav.Link{
+    background-color: purple;
+    color: plum;
     font-weight: bold;
     
 }

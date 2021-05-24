@@ -12,6 +12,7 @@ class EmptyTask extends React.Component{
             desc: '',
             date: '',
             time:'',
+            endTime:'',
             assignedTo:'',
             subject:''
         }
@@ -24,6 +25,7 @@ class EmptyTask extends React.Component{
             desc: '',
             date: '',
             time:'',
+            endTime:'',
             assignedTo:'',
             subject:''
            
@@ -39,6 +41,7 @@ class EmptyTask extends React.Component{
             desc: this.state.desc,
             date: this.state.date,
             time: this.state.time,
+            endTime: this.state.endTime,
             assignedTo: this.state.assignedTo
             
         }
@@ -60,7 +63,7 @@ class EmptyTask extends React.Component{
 
         return(
           <Container>
-                <Button onClick={()=>{this.setState({isModalOpen:true})}}>Add a Task</Button>
+                <Button type='button' className='add-button' onClick={()=>{this.setState({isModalOpen:true})}}>Add a Task</Button>
           
                 <Modal show={this.state.isModalOpen} onHide={this.handleClose}>
                 <Modal.Header closeButton>
@@ -144,6 +147,16 @@ class EmptyTask extends React.Component{
                         <Form.Control type="time" placeholder="Task Time"
                         value={this.state.time}
                         onChange={(event)=> {this.setState({time: event.target.value})}}
+                        />
+                    </Col>
+
+                    <Form.Label column sm={2}>
+                    End Time:
+                    </Form.Label>
+                    <Col sm={10}>
+                        <Form.Control type="time" placeholder="Task Time"
+                        value={this.state.endTime}
+                        onChange={(event)=> {this.setState({endTime: event.target.value})}}
                         />
                     </Col>
 

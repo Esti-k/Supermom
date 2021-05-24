@@ -27,7 +27,7 @@ class App extends React.Component {
             // tasksToShow : [{title : 'a'},{title : 'b'}],
             tasksToShow : [],
             // <Card><h1>{task.title}</h1><p>{task.desc}</p><h5>{task.date}+' '+{task.time}</h5><h5>{task.assignedTo}</h5></Card>
-            subjects : [{subject:'Choose a Subject'},{subject:'Fun'},{subject:'Studies'}],
+            subjects : [{subject:'Choose a Subject'},{subject:'Fun'},{subject:'Studies'},{subject:'Laundry'}],
             people: [{name:'Choose a Person'},{name: 'Mom'}, {name: 'Dad'}, {name: 'Adi'}],
             //  filter:{name: '', subject:'', date: ''}
             filter:{name:'', subject:'', date:''},
@@ -95,7 +95,7 @@ class App extends React.Component {
       // this.state.filter.subject = filter.subject;
     }
 
-    
+    ///////update task from calendar gets here:
     updateTask = (task) => {
       // Update the task
      console.log('updateTask');
@@ -105,9 +105,17 @@ class App extends React.Component {
                                                       }});
     let helper = [...this.state.tasksToDo];
     helper[taskIndex] = task;
-    this.setState({
-      tasksToDo : helper
+    this.setState({tasksToDo : helper}, function () {
+      const defineDates = this.state.tasksToDo.map((task) => {return({endTime: task.endTime, date: task.date,time:task.time, start: moment(task.date.concat('-').concat(task.time),"YYYY-MM-DD-hh:mm").toDate(), assignedTo : task.assignedTo, desc: task.desc, subject:task.subject, title:task.title})})
+    const myEvents = defineDates.map((task,index)=>{return({start: task.start, end: moment(task.date.concat('-').concat(task.endTime),"YYYY-MM-DD-hh:mm").toDate(), title:task.title, id:index, assignedTo : task.assignedTo})})
+    //  const myEvents = defineDates.map((task,index)=>{return({start: task.start, end:moment(task.date.concat('-').concat((parseInt((task.time).substring(0,2))+1).toString()),"YYYY-MM-DD-hh:mm").toDate(), title:task.title, id:index, assignedTo : task.assignedTo})})
+    this.setState({ events: myEvents})
     })
+ 
+    // const defineDates = this.state.tasksToDo.map((task) => {return({endTime: task.endTime, date: task.date,time:task.time, start: moment(task.date.concat('-').concat(task.time),"YYYY-MM-DD-hh:mm").toDate(), assignedTo : task.assignedTo, desc: task.desc, subject:task.subject, title:task.title})})
+    // const myEvents = defineDates.map((task,index)=>{return({start: task.start, end: moment(task.date.concat('-').concat(task.endTime),"YYYY-MM-DD-hh:mm").toDate(), title:task.title, id:index, assignedTo : task.assignedTo})})
+    // //  const myEvents = defineDates.map((task,index)=>{return({start: task.start, end:moment(task.date.concat('-').concat((parseInt((task.time).substring(0,2))+1).toString()),"YYYY-MM-DD-hh:mm").toDate(), title:task.title, id:index, assignedTo : task.assignedTo})})
+    // this.setState({ events: myEvents})
 
 
   //    const currentTask = this.props.tasksToDo.find((task) => {
@@ -115,20 +123,29 @@ class App extends React.Component {
   //         return true;
   // }
   // )
+
   }
+
+
 
     addTask = (task) =>{
       console.log('in addtask in app.js')
-      let helper = this.state.tasksToDo.concat(task);
-      this.setState(
-          {
-              tasksToDo: helper 
-          }      
-      )
+      let helper = [...this.state.tasksToDo].concat(task);
+      this.setState({tasksToDo: helper}, function(){this.defineEvents();})
+  
+      
+        // const defineDates = this.state.tasksToDo.map((task) => {return({endTime: task.endTime, date: task.date,time:task.time, start: moment(task.date.concat('-').concat(task.time),"YYYY-MM-DD-hh:mm").toDate(), assignedTo : task.assignedTo, desc: task.desc, subject:task.subject, title:task.title})})
+        // const myEvents = defineDates.map((task,index)=>{return({start: task.start, end: moment(task.date.concat('-').concat(task.endTime),"YYYY-MM-DD-hh:mm").toDate(), title:task.title, id:index, assignedTo : task.assignedTo})})
+        // //  const myEvents = defineDates.map((task,index)=>{return({start: task.start, end:moment(task.date.concat('-').concat((parseInt((task.time).substring(0,2))+1).toString()),"YYYY-MM-DD-hh:mm").toDate(), title:task.title, id:index, assignedTo : task.assignedTo})})
+        // this.setState({
+        //   events: myEvents
+        // })
+      }
 
-        const defineDates = this.state.tasksToDo.map((task) => {return({date: task.date,time:task.time, start: moment(task.date.concat('-').concat(task.time),"YYYY-MM-DD-hh:mm").toDate(), assignedTo : task.assignedTo, desc: task.desc, subject:task.subject, title:task.title})})
-        // const myEvents = defineDates.map((task,index)=>{return({start: task.start, end:new Date(task.start.addHours(task.start.getHours()+1)), title:'new title', id:index})})
-         const myEvents = defineDates.map((task,index)=>{return({start: task.start, end:moment(task.date.concat('-').concat((parseInt((task.time).substring(0,2))+1).toString()),"YYYY-MM-DD-hh:mm").toDate(), title:task.title, id:index, assignedTo : task.assignedTo})})
+      defineEvents(){
+        const defineDates = this.state.tasksToDo.map((task) => {return({endTime: task.endTime, date: task.date,time:task.time, start: moment(task.date.concat('-').concat(task.time),"YYYY-MM-DD-hh:mm").toDate(), assignedTo : task.assignedTo, desc: task.desc, subject:task.subject, title:task.title})})
+        const myEvents = defineDates.map((task,index)=>{return({start: task.start, end: moment(task.date.concat('-').concat(task.endTime),"YYYY-MM-DD-hh:mm").toDate(), title:task.title, id:index, assignedTo : task.assignedTo})})
+        //  const myEvents = defineDates.map((task,index)=>{return({start: task.start, end:moment(task.date.concat('-').concat((parseInt((task.time).substring(0,2))+1).toString()),"YYYY-MM-DD-hh:mm").toDate(), title:task.title, id:index, assignedTo : task.assignedTo})})
         this.setState({
           events: myEvents
         })
@@ -167,9 +184,8 @@ class App extends React.Component {
     }
 
       render(){
-        
         return (
-
+          
         <HashRouter>
 
           <NavbarMain></NavbarMain>

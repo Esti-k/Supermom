@@ -18,9 +18,10 @@ class ManageSubjects extends React.Component{
 
     render(){
         return(
-            <Container>
-                <ShowSubjects subjects = {this.props.subjects}></ShowSubjects>
+            <Container className='manage-subjects-people' >
                 <AddSubject addSubject = {this.addSubject}></AddSubject>
+                <ShowSubjects subjects = {this.props.subjects}></ShowSubjects>
+                
             </Container>
         )
     }

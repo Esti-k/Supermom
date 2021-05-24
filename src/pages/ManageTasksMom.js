@@ -16,6 +16,7 @@ class ManageTasksMom extends React.Component{
             desc:'',
             date:'',
             time:'',
+            endTime:'',
             assignedTo:'',
             subject:'',
             taskObj:{}
@@ -50,12 +51,14 @@ class ManageTasksMom extends React.Component{
             desc: currentTask.description,
             date: currentTask.date,
             time:currentTask.time,
+            endTime:currentTask.endTime,
             assignedTo:currentTask.assignedTo,
             subject:currentTask.subject,
 
             taskObj: {title: currentTask.title,
                 desc: currentTask.description,
                 date: currentTask.date,
+                endTime:currentTask.endTime,
                 time:currentTask.time,
                 assignedTo:currentTask.assignedTo,
                 subject:currentTask.subject}
@@ -77,6 +80,7 @@ class ManageTasksMom extends React.Component{
             desc: currentTask[0].description,
             date: currentTask[0].date,
             time:currentTask[0].time,
+            endTime:currentTask[0].endTime,
             assignedTo:currentTask[0].assignedTo,
             subject:currentTask[0].subject,
 
@@ -109,16 +113,19 @@ class ManageTasksMom extends React.Component{
            
                 <div className='manage-tasks'>
                     <div className='manage-tasks-child'>
-                        <h3>Find and edit tasks</h3>
+                        <EmptyTask addTask = {this.addTask} people = {this.props.people} subjects = {this.props.subjects}></EmptyTask>
+                    </div>
+                    <div className='manage-tasks-child'>
+                        <h3 className='centered-header'>Find and edit tasks</h3>
                         <FilterMain setCurrentTaskTitle = {this.setCurrentTaskTitle} openTaskUpdate={this.openTaskUpdate} openTaskUpdate2={this.openTaskUpdate2} setFilter = {this.setFilter} tasksToDo = {this.props.tasksToDo} filter = {this.props.filter} tasksToShow = {this.props.tasksToShow} showTasks = {this.props.showTasks} people = {this.props.people} subjects = {this.props.subjects}></FilterMain>
                         {/* {this.props.tasksToShow} */}
                     </div>
                     
-                    <div className='manage-tasks-child'>
+                    {/* <div className='manage-tasks-child'>
                         <EmptyTask addTask = {this.addTask} people = {this.props.people} subjects = {this.props.subjects}></EmptyTask>
-                    </div>
+                    </div> */}
                     <div>
-                        <FullTask taskObj={this.state.taskObj} title={this.state.taskTitle} subject={this.state.subject} desc={this.state.desc} taskObj = {this.state.taskObj} taskTitle={this.state.taskTitle} setModalCloseInParent = {this.setModalCloseInParent} isModalOpen = {this.state.updateTaskOpen} updateTask = {this.updateTask} people = {this.props.people} subjects = {this.props.subjects} tasksToDo = {this.props.tasksToDo}></FullTask>
+                        <FullTask imNew= {true} taskObj={this.state.taskObj} title={this.state.taskTitle} subject={this.state.subject} desc={this.state.desc} taskObj = {this.state.taskObj} taskTitle={this.state.taskTitle} setModalCloseInParent = {this.setModalCloseInParent} isModalOpen = {this.state.updateTaskOpen} updateTask = {this.updateTask} people = {this.props.people} subjects = {this.props.subjects} tasksToDo = {this.props.tasksToDo}></FullTask>
                     </div>
                     
     {/* The EmptyTask will open when the button will be clicked

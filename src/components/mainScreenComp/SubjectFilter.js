@@ -1,5 +1,7 @@
 import React from 'react'
 import { Form  } from 'react-bootstrap';
+import App from '../../App.css';
+
 
 class SubjectFilter extends React.Component{
     constructor(props){
@@ -17,10 +19,9 @@ class SubjectFilter extends React.Component{
         const mySubjects = this.props.subjects.map((sub)=>{return (<option>{sub.subject}</option>)});
 
         return(
-
                     // <Form>
                         <Form.Group controlId="exampleForm.SelectCustom">
-                            <Form.Label>Choose Subject</Form.Label>
+                            <Form.Label>Filter by Subject</Form.Label>
                             <Form.Control as="select" custom onChange={this.setFilter}>
                                 {mySubjects}
                             {/* <option>Sub1</option>

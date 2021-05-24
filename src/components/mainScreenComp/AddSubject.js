@@ -34,7 +34,7 @@ class AddSubject extends React.Component{
     render(){
         return(
           <Container>
-                <Button onClick={()=>{this.setState({isModalOpen:true})}}>Add a Subject</Button>
+                <Button className='add-button margin-top-10' onClick={()=>{this.setState({isModalOpen:true})}}>Add a Subject</Button>
           
                 <Modal show={this.state.isModalOpen} onHide={this.handleClose}>
                 <Modal.Header closeButton>

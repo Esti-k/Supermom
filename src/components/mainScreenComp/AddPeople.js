@@ -50,7 +50,7 @@ class AddPeople extends React.Component{
         })
         return(
           <Container>
-                <Button onClick={()=>{this.setState({isModalOpen:true})}}>Add a Person</Button>
+                <Button className='add-button margin-top-10' onClick={()=>{this.setState({isModalOpen:true})}}>Add a Person</Button>
 
                 <Modal show={this.state.isModalOpen} onHide={this.handleClose}>
                 <Modal.Header closeButton>

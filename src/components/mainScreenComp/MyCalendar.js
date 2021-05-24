@@ -203,6 +203,7 @@ class MyCalendar extends Component {
         desc:'',
         date:'',
         time:'',
+        endTime:'',
         assignedTo:'',
         subject:'',
         taskObj:{}
@@ -229,45 +230,72 @@ class MyCalendar extends Component {
         //     taskTitle:myTitle
         // })
 
-        const currentTask = this.props.tasksToDo.filter((task) => {
+        const currentTask = this.props.tasksToDo.find((task) => {
             if(myTitle == task.title)
                 return true;
         }
         )
-
         this.setState({
-            updateTaskOpen : true,
-            taskTitle: currentTask[0].title,
-            desc: currentTask.description,
-            date: currentTask.date,
-            time:currentTask.time,
-            assignedTo:currentTask.assignedTo,
-            subject:currentTask.subject,
+          taskTitle: currentTask.title,
+          desc: currentTask.description,
+          date: currentTask.date,
+          time:currentTask.time,
+          endTime:currentTask.endTime,
+          assignedTo:currentTask.assignedTo,
+          subject:currentTask.subject,
 
-            taskObj: {title: currentTask.title,
-                desc: currentTask.description,
-                date: currentTask.date,
-                time:currentTask.time,
-                assignedTo:currentTask.assignedTo,
-                subject:currentTask.subject}
-        })
+          taskObj: {title: currentTask.title,
+              desc: currentTask.description,
+              date: currentTask.date,
+              time:currentTask.time,
+              endTime:currentTask.endTime,
+              assignedTo:currentTask.assignedTo,
+              subject:currentTask.subject}
+      })
+        // this.setState({
+        //     taskTitle: currentTask[0].title,
+        //     desc: currentTask[0].description,
+        //     date: currentTask[0].date,
+        //     time:currentTask[0].time,
+        //     endTime:currentTask[0].endTime,
+        //     assignedTo:currentTask[0].assignedTo,
+        //     subject:currentTask[0].subject,
+
+        //     taskObj: {title: currentTask[0].title,
+        //         desc: currentTask[0].description,
+        //         date: currentTask[0].date,
+        //         time:currentTask[0].time,
+        //         endTime:currentTask[0].endTime,
+        //         assignedTo:currentTask[0].assignedTo,
+        //         subject:currentTask[0].subject}
+        // })
+        this.setState({updateTaskOpen : true})
 
     }
-
+//////////CHANGED HERE:
     setModalCloseInParent = () =>{
       this.setState({
-          updateTaskOpen : false
+          updateTaskOpen : false,
+          taskTitle:'',
+        desc:'',
+
+        date:'',
+        time:'',
+        endTime:'',
+        assignedTo:'',
+        subject:'',
+        taskObj:{}
       })
   }
 
   onEventResize = (data) => {
-    const { start, end } = data;
+    // const { start, end } = data;
 
-    this.setState((state) => {
-      state.events[0].start = start;
-      state.events[0].end = end;
-      return { events: [...state.events] };
-    });
+    // this.setState((state) => {
+    //   state.events[0].start = start;
+    //   state.events[0].end = end;
+    //   return { events: [...state.events] };
+    // });
   };
 
   onEventDrop = (data) => {
@@ -310,6 +338,11 @@ class MyCalendar extends Component {
       }
   }
 
+  updateTask = (task) => {
+    // console.log(task.title + 'in ManageTasksMom');
+    this.props.updateTask(task);
+  }
+
   render() {
     const myEvents = this.filterEvents(this.props.events, this.props.filter);
     return (
@@ -328,7 +361,12 @@ class MyCalendar extends Component {
           eventPropGetter={(this.props.eventPropGetter)}
         />
         <div>
-              <FullTask taskObj={this.state.taskObj} title={this.state.taskTitle} subject={this.state.subject} desc={this.state.desc} taskObj = {this.state.taskObj} taskTitle={this.state.taskTitle} setModalCloseInParent = {this.setModalCloseInParent} isModalOpen = {this.state.updateTaskOpen} updateTask = {this.props.updateTask} people = {this.props.people} subjects = {this.props.subjects} tasksToDo = {this.props.tasksToDo}></FullTask>
+              <FullTask imNew= {true}
+              taskObj={this.state.taskObj} 
+              time={this.state.time}
+              endTime={this.state.endTime}
+              assignedTo={this.state.assignedTo}
+              title={this.state.taskTitle} subject={this.state.subject} desc={this.state.desc} taskObj = {this.state.taskObj} taskTitle={this.state.taskTitle} setModalCloseInParent = {this.setModalCloseInParent} isModalOpen = {this.state.updateTaskOpen} updateTask = {(task)=>this.updateTask(task)} people = {this.props.people} subjects = {this.props.subjects} tasksToDo = {this.props.tasksToDo}></FullTask>
         </div>
         
       </div>

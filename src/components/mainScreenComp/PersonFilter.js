@@ -20,7 +20,7 @@ setFilter = (event) => {
 
                     // <Form>
                         <Form.Group controlId="exampleForm.SelectCustom">
-                            <Form.Label>Choose Person</Form.Label>
+                            <Form.Label>Filter by Person</Form.Label>
                             {/* Change onClick instead of onChanged */}
                             <Form.Control as="select" custom onChange={this.setFilter}>
                                 {myPeople}

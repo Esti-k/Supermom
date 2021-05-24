@@ -19,8 +19,9 @@ class ManagePeople extends React.Component{
     render(){
         return(
             <Container>
-                <ShowPeople people = {this.props.people}></ShowPeople>
                 <AddPeople addPeople = {this.addPeople} subjects = {this.props.subjects}></AddPeople>
+                <ShowPeople people = {this.props.people}></ShowPeople>
+                
             </Container>
         )
     }
