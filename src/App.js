@@ -28,7 +28,7 @@ class App extends React.Component {
             // tasksToShow : [{title : 'a'},{title : 'b'}],
             tasksToShow : [],
             // <Card><h1>{task.title}</h1><p>{task.desc}</p><h5>{task.date}+' '+{task.time}</h5><h5>{task.assignedTo}</h5></Card>
-            subjects : [{subject:'Choose a Subject'},{subject:'Fun'},{subject:'Studies'},{subject:'Laundry'}],
+            subjects : [{subject:'Choose a Subject'},{subject:'Fun'},{subject:'Studies'},{subject:'Laundry'},{subject:'Kitchen'},{subject: 'cleaning'}],
             people: [{name:'Choose a Person'},{name: 'Mom'}, {name: 'Dad'}, {name: 'Adi'}],
             //  filter:{name: '', subject:'', date: ''}
             filter:{name:'', subject:'', date:''},
