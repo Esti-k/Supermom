@@ -66,7 +66,8 @@ class EmptyTask extends React.Component{
                 <Button type='button' className='add-button' onClick={()=>{this.setState({isModalOpen:true})}}>Add a Task</Button>
           
                 <Modal show={this.state.isModalOpen} onHide={this.handleClose}>
-                <Modal.Header closeButton>
+                {/* <Modal.Header closeButton> */}
+                <Modal.Header>
                 <Modal.Title>Add a Task</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -77,7 +78,7 @@ class EmptyTask extends React.Component{
                     Title:
                     </Form.Label>
                     <Col sm={10}>
-                        <Form.Control 
+                        <Form.Control className='input-cl'
                         type="text" 
                         placeholder="Task title"
                             value={this.state.title}
@@ -90,7 +91,7 @@ class EmptyTask extends React.Component{
                     Subject:
                     </Form.Label>
                     <Col sm={10}>
-                        <Form.Control as="select" custom
+                        <Form.Control className='input-cl' as="select" custom
                             value={this.state.subject}
                             onChange={(event)=> {this.setState({subject: event.target.value})}}
                         >
@@ -120,11 +121,11 @@ class EmptyTask extends React.Component{
                         />
                     </Col> */}
 
-                    <Form.Label column sm={2}>
+                    <Form.Label className='padding-right-10' column sm={2}>
                     Description:
                     </Form.Label>
                     <Col sm={10}>
-                        <Form.Control type="text" placeholder="Task Description"
+                        <Form.Control className='input-cl' type="text" placeholder="Task Description"
                         value={this.state.desc}
                         onChange={(event)=> {this.setState({desc: event.target.value})}}
                         />
@@ -134,7 +135,7 @@ class EmptyTask extends React.Component{
                     Date:
                     </Form.Label>
                     <Col sm={10}>
-                        <Form.Control type="date"
+                        <Form.Control className='input-cl' type="date"
                         value={this.state.date}
                         onChange={(event)=> {this.setState({date: event.target.value})}}
                         />
@@ -144,7 +145,7 @@ class EmptyTask extends React.Component{
                     Time:
                     </Form.Label>
                     <Col sm={10}>
-                        <Form.Control type="time" placeholder="Task Time"
+                        <Form.Control className='input-cl' type="time" placeholder="Task Time"
                         value={this.state.time}
                         onChange={(event)=> {this.setState({time: event.target.value})}}
                         />
@@ -154,7 +155,7 @@ class EmptyTask extends React.Component{
                     End Time:
                     </Form.Label>
                     <Col sm={10}>
-                        <Form.Control type="time" placeholder="Task Time"
+                        <Form.Control className='input-cl' type="time" placeholder="Task Time"
                         value={this.state.endTime}
                         onChange={(event)=> {this.setState({endTime: event.target.value})}}
                         />
@@ -169,7 +170,7 @@ class EmptyTask extends React.Component{
                         onChange={(event)=> {this.setState({assignTo: event.target.value})}}
                         /> */}
 
-                        <Form.Control as="select" custom
+                        <Form.Control className='input-cl' as="select" custom
                             value={this.state.assignTo}
                             onChange={(event)=> {this.setState({assignedTo: event.target.value})}}
                         >
@@ -184,10 +185,11 @@ class EmptyTask extends React.Component{
 
                 </Modal.Body>
                 <Modal.Footer>
-                <Button variant="secondary" onClick={this.handleClose}>
+                <Button className="add-button" onClick={this.handleClose}>
                     Close
                 </Button>
-                <Button type="button" variant="primary" onClick={this.saveModalInfo}>
+                {/* variant="primary" */}
+                <Button className="add-button" type="button" onClick={this.saveModalInfo}>
                     Save Changes
                 </Button>
                 </Modal.Footer>

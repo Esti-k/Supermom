@@ -115,6 +115,21 @@ main {
   margin-top: 5em;
   max-width: 50em;
 }
+.{
+  color:purple;
+}
+.input-cl{
+  margin-bottom: 10px;
+}
+
+.padding-right-10{
+
+}
+
+.gray-button{
+  background: lightgray !important;
+  color: black;
+}
 
 .add-button{
   background: plum !important;

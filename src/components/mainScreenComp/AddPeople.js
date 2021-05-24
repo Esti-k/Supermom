@@ -53,8 +53,9 @@ class AddPeople extends React.Component{
                 <Button className='add-button margin-top-10' onClick={()=>{this.setState({isModalOpen:true})}}>Add a Person</Button>
 
                 <Modal show={this.state.isModalOpen} onHide={this.handleClose}>
-                <Modal.Header closeButton>
-                <Modal.Title>Add a Person</Modal.Title>
+                {/* <Modal.Header closeButton> */}
+                <Modal.Header>
+                <Modal.Title className='purple'>Add a Person</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
         
@@ -64,7 +65,7 @@ class AddPeople extends React.Component{
                     Name:
                     </Form.Label>
                     <Col sm={10}>
-                        <Form.Control 
+                        <Form.Control className='input-cl'
                         type="text" 
                         placeholder="Name"
                             value={this.state.name}
@@ -76,7 +77,7 @@ class AddPeople extends React.Component{
                     Birthday:
                     </Form.Label>
                     <Col sm={10}>
-                        <Form.Control type="date" placeholder="Birthday"
+                        <Form.Control className='input-cl' type="date" placeholder="Birthday"
                         value={this.state.bday}
                         onChange={(event)=> {this.setState({bday: event.target.value})}}
                         />
@@ -107,7 +108,7 @@ class AddPeople extends React.Component{
                     Permission:
                     </Form.Label>
                     <Col sm={10}>
-                        <Form.Control as="select" custom
+                        <Form.Control className='input-cl' as="select" custom
                             value={this.state.permission}
                             onChange={(event)=> {this.setState({permission: event.target.value})}}
                         >
@@ -123,7 +124,7 @@ class AddPeople extends React.Component{
                    {/* //subjectsToChooseFrom */}
                     </Form.Label>
                     <Col sm={10}>
-                        <Form.Control as="select" custom
+                        <Form.Control className='input-cl' as="select" custom
                             value={this.state.prefferedSubjects}
                             onChange={(event)=> {this.setState({prefferedSubjects: event.target.value})}}
                         >
@@ -141,10 +142,10 @@ class AddPeople extends React.Component{
 
                 </Modal.Body>
                 <Modal.Footer>
-                <Button variant="secondary" onClick={this.handleClose}>
+                <Button className='add-button' onClick={this.handleClose}>
                     Close
                 </Button>
-                <Button type="button" variant="primary" onClick={this.saveModalInfo}>
+                <Button type="button" className='add-button' onClick={this.saveModalInfo}>
                     Save Changes
                 </Button>
                 </Modal.Footer>

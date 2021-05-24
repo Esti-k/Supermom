@@ -1,6 +1,6 @@
 import React from "react";
 import { Image } from "react-bootstrap";
-import dad from './dad.png'
+// import dad from './dad.png'
 
 class Login2 extends React.Component{
     constructor(props){
@@ -14,8 +14,9 @@ class Login2 extends React.Component{
     }
     render(){
         return(
-        <div>
-            <img src={dad}></img>
+        <div className='dad'>
+           <img src={process.env.PUBLIC_URL + "/images/dad.png"}></img>
+           {/* <img src='public/dad.png'></img> */}
         </div>
         )    
 }
